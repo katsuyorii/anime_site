@@ -1,0 +1,9 @@
+# Folders
+venv/
+__pychache__/
+
+# ENV
+.env
+
+# DB-file
+db.sqlite3
