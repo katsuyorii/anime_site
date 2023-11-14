@@ -1,0 +1,568 @@
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+.header {
+    height: 50px;
+    background-color: #212529;
+    display: flex;
+    align-items: center;
+}
+
+.wrapper {
+    margin: 0 auto;
+    width: 1024px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-logo {
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 28px;
+    color: white;
+    text-decoration: none;
+}
+
+.header-menu {
+    display: flex;
+    gap: 20px;
+    padding-top: 12px;
+}
+
+.header-menu-index {
+    display: flex;
+    gap: 20px;
+}
+
+.header-menu-item {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 18px;
+    color: white;
+    text-decoration: none;
+}
+
+.header-menu-item:hover {
+    color: lightgrey;
+    transition: 0.3s linear;
+}
+
+.header-icons {
+    display: flex;
+    gap: 15px;
+}
+
+.header-icons-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.main {
+    background-color: #e9ebee;
+}
+
+.main-block-title {
+    padding-top: 30px;
+    background-color: white;
+    height: 185px;
+    border-bottom: 1px solid gray;
+}
+
+.block-title-h {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    padding-bottom: 20px;
+}
+
+.block-title-p {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 18px;
+}
+
+.main-block-new-anime {
+    padding-top: 30px;
+}
+
+.main-block-new-anime-row {
+    display: flex;
+    gap: 20px;
+}
+
+.main-block-new-anime-row-card {
+    height: 310px;
+    width: 189px;
+}
+
+.main-block-new-anime-row-card-img {
+    height: 267px;
+    width: 189px;
+    padding-bottom: 10px;
+}
+
+.main-block-new-anime-row-card-a {
+    display: inline-block;
+    width: 180px;
+    text-decoration: none;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 20px;
+    color: Chocolate;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.main-block-new-anime-row-card-a:hover {
+    color: orangered;
+    transition: 0.3s linear;
+}
+
+.main-block-popular-anime {
+    margin-top: 30px;
+    background-color: white;
+    padding-top: 30px;
+    height: 380px;
+    border-top: 1px solid gray;
+    border-bottom: 1px solid gray;
+}
+
+.footer {
+    height: 50px;
+    background-color: #212529;
+    display: flex;
+    align-items: center;
+}
+
+.footer-title {
+    margin: 0 auto;
+    font-family: 'Gloria Hallelujah', cursive;
+    font-size: 20px;
+    color: white;
+    text-decoration: none;
+}
+
+.main-block-list-anime {}
+
+.main-block-list-anime-card {
+    width: 724px;
+    height: 210px;
+    display: flex;
+    gap: 20px;
+    margin-bottom: 40px;
+}
+
+.main-block-list-anime-card-img {
+    height: 210px;
+    width: 189px;
+}
+
+.main-block-list-anime-card-a {
+    text-decoration: none;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 24px;
+    color: Chocolate;
+}
+
+.main-block-list-anime-card-a:hover {
+    color: orangered;
+    transition: 0.3s linear;
+}
+
+.main-block-list-anime-card-type-row {
+    display: flex;
+    gap: 15px;
+    padding-top: 12px;
+}
+
+.main-block-list-anime-card-eng {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 13px;
+    padding-top: 12px;
+    color: gray;
+}
+
+.main-block-list-anime-card-p {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 18px;
+    padding-top: 12px;
+}
+
+.main-block-list-anime-card-type-row-a {
+    font-family: 'Ubuntu', sans-serif;
+    color: black;
+}
+
+.main-block-list-anime-card-type-row-a:hover {
+    color: orangered;
+    transition: 0.3s linear;
+}
+
+.main-block-inner-two {
+    display: flex;
+    gap: 10px;
+}
+
+.main-block-filter {
+    width: 300px;
+    height: 600px;
+}
+
+.main-block-login {
+    width: 724px;
+    height: 500px;
+}
+
+.main-block-login-img {
+    width: 150px;
+    height: 150px;
+    display: block;
+    margin: 0 auto;
+    padding-bottom: 30px;
+}
+
+.main-block-menu-profile {
+    margin-left: 100px;
+    padding: 10px 40px;
+    border: 1px solid gray;
+    background-color: white;
+}
+
+.main-block-menu-profile-a {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 18px;
+    color: black;
+    text-decoration: none;
+}
+
+.main-block-menu-profile-a:hover {
+    color: orangered;
+    transition: 0.3s linear;
+}
+
+.main-block-menu-profile-li {
+    padding-bottom: 10px;
+}
+
+.custom-dropdown {
+    position: relative;
+    display: inline-block;
+    vertical-align: middle;
+    margin: 10px;
+}
+
+.big {
+    font-size: 1.2em;
+}
+
+.main-block-anime-detail-left-img {
+    width: 189px;
+    height: 267px;
+}
+
+.main-block-anime-detail {
+    margin-top: 30px;
+    padding: 18px 18px;
+    width: 1024px;
+    background-color: white;
+    border: 1px solid gainsboro;
+    border-bottom: 1px solid white;
+    display: flex;
+    gap: 15px;
+}
+
+.rating-area {
+    overflow: hidden;
+    width: 265px;
+    margin-left: -55px;
+}
+
+.rating-area:not(:checked)>input {
+    display: none;
+}
+
+.rating-area:not(:checked)>label {
+    float: right;
+    width: 42px;
+    padding: 0;
+    cursor: pointer;
+    font-size: 32px;
+    line-height: 32px;
+    color: lightgrey;
+    text-shadow: 1px 1px #bbb;
+}
+
+.rating-area:not(:checked)>label:before {
+    content: '★';
+}
+
+.rating-area>input:checked~label {
+    color: gold;
+    text-shadow: 1px 1px #c60;
+}
+
+.rating-area:not(:checked)>label:hover,
+.rating-area:not(:checked)>label:hover~label {
+    color: gold;
+}
+
+.rating-area>input:checked+label:hover,
+.rating-area>input:checked+label:hover~label,
+.rating-area>input:checked~label:hover,
+.rating-area>input:checked~label:hover~label,
+.rating-area>label:hover~input:checked~label {
+    color: gold;
+    text-shadow: 1px 1px goldenrod;
+}
+
+.rate-area>label:active {
+    position: relative;
+}
+
+.main-block-anime-detail-right {
+    width: 740px;
+}
+
+.main-block-anime-detail-right-h {
+    font-family: 'Ubuntu', sans-serif;
+    font-weight: 700;
+    font-size: 40px;
+}
+
+.main-block-anime-detail-right-desc {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 14px;
+}
+
+.line {
+    border-bottom: 1px solid gainsboro;
+    margin-bottom: 20px;
+}
+
+.main-block-anime-detail-right-main {
+    width: 300px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.p-item {
+    margin-bottom: 6px;
+}
+
+.p-item-color {
+    color: gray;
+}
+
+.main-block-anime-detail-bottom {
+    padding: 18px 18px;
+    width: 1024px;
+    border-bottom: 1px solid gainsboro;
+    border-right: 1px solid gainsboro;
+    border-left: 1px solid gainsboro;
+    background-color: white;
+}
+
+.main-block-anime-detail-bottom-desc {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 16px;
+}
+
+.main-block-anime-detail-bottom-h2 {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 28px;
+    margin-bottom: 15px;
+}
+
+.main-block-anime-detail-bottom-block-img {
+    display: flex;
+    gap: 37px;
+}
+
+.main-block-anime-detail-bottom-block-img-screen {
+    width: 300px;
+    height: 170px;
+}
+
+.main-block-anime-detail-bottom-comment {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.img_obertka {
+    display: block;
+    border-radius: 50%;
+    overflow: hidden;
+    width: 60px;
+    height: 60px;
+}
+
+.main-block-anime-detail-bottom-comment-img {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+}
+
+.main-block-anime-detail-bottom-comment-content {}
+
+.main-block-anime-detail-bottom-comment-content-namedata {
+    display: flex;
+    gap: 10px;
+}
+
+.main-block-anime-detail-bottom-comment-content-name {
+    text-decoration: none;
+    font-family: 'Ubuntu', sans-serif;
+    color: Chocolate;
+    font-size: 17px;
+}
+
+.main-block-anime-detail-bottom-comment-content-name:hover {
+    color: orangered;
+    transition: 0.3s linear;
+}
+
+.main-block-anime-detail-bottom-comment-content-data {
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 12px;
+    color: gray;
+    padding-top: 5px;
+}
+
+.main-block-anime-detail-bottom-comment-content-text {
+    font-family: 'Ubuntu', sans-serif;
+    width: 900px;
+}
+
+.main-block-login-reg {
+    padding-top: 10px;
+}
