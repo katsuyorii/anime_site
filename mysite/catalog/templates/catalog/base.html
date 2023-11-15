@@ -1,0 +1,43 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="header">
+        <div class="wrapper">
+            <a class="header-logo" href="#">AnimeOne</a>
+            <ol class="header-menu-index">
+                <li><a href="" class="header-menu-item">Аниме</a></li>
+                <li><a href="" class="header-menu-item">Манга</a></li>
+                <li><a href="" class="header-menu-item">Ранобэ</a></li>
+                <li><a href="" class="header-menu-item">Новости</a></li>
+            </ol>
+            <div class="header-icons">
+                <a href="#"><img class="header-icons-icon" src="{% static 'img/icons/search.svg' %}" alt="Search"></a>
+                <a href="#"><img class="header-icons-icon" src="{% static 'img/icons/profile.png' %}" alt="Profile"></a>
+            </div>
+        </div>
+    </header>
+    <div class="main">
+        {% block content %}{% endblock content %}
+    </div>
+    <footer class="footer">
+        <div class="wrapper">
+            <a href="#" class="footer-title">AnimeOne</a>
+        </div>
+    </footer>
+</body>
+
+</html>
