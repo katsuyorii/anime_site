@@ -17,9 +17,9 @@
 <body>
     <header class="header">
         <div class="wrapper">
-            <a class="header-logo" href="#">AnimeOne</a>
+            <a class="header-logo" href="{% url 'index' %}">AnimeOne</a>
             <ol class="header-menu-index">
-                <li><a href="" class="header-menu-item">Аниме</a></li>
+                <li><a href="{% url 'anime_list' %}" class="header-menu-item">Аниме</a></li>
                 <li><a href="" class="header-menu-item">Манга</a></li>
                 <li><a href="" class="header-menu-item">Ранобэ</a></li>
                 <li><a href="" class="header-menu-item">Новости</a></li>
@@ -35,7 +35,7 @@
     </div>
     <footer class="footer">
         <div class="wrapper">
-            <a href="#" class="footer-title">AnimeOne</a>
+            <a href="{% url 'index' %}" class="footer-title">AnimeOne</a>
         </div>
     </footer>
 </body>
