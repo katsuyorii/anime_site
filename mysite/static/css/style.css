@@ -566,3 +566,41 @@ table {
 .main-block-login-reg {
     padding-top: 10px;
 }
+
+.pagination {
+    display: inline-block;
+    margin-left: 240px;
+    margin-bottom: 50px;
+}
+
+.pagination a {
+    color: black;
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+    border: 1px solid #ddd;
+}
+
+.pagination a:hover {
+    background-color: black;
+    color: white;
+    border: 1px solid black;
+}
+
+.pagination a:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.pagination a:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.pagination a.non-activate:hover {
+    text-decoration: none;
+    cursor: default;
+    background-color: #e9ebee;
+    color: black;
+    border: 1px solid #ddd;
+}

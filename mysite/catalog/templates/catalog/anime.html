@@ -28,6 +28,23 @@
 
                 </div>
             </div>
+            {% if is_paginated %}
+                <div class="pagination">
+                    {% if page_obj.has_previous %}
+                        <a href="?page={{page_obj.previous_page_number}}">«</a>
+                    {% else %}
+                        <a class="non-activate">«</a>
+                    {% endif %}
+                    {% for page in paginator.page_range %}
+                        <a href="?page={{page}}">{{page}}</a>
+                    {% endfor %}
+                    {% if page_obj.has_next %}
+                        <a href="?page={{page_obj.next_page_number}}">»</a>
+                    {% else %}
+                        <a class="non-activate">»</a>
+                    {% endif %}
+                </div>
+            {% endif %}
         </div>
     </div>
 </div>
