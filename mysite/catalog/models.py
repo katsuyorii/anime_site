@@ -67,3 +67,15 @@ class Anime(models.Model):
     class Meta:
         verbose_name = 'Аниме'
         verbose_name_plural = 'Аниме'
+
+
+class AnimeShots(models.Model):
+    image = models.ImageField(verbose_name='Изображение постера аниме', upload_to='anime-shorts/')
+    anime = models.ForeignKey(verbose_name='Аниме', to=Anime, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f'Кадр из аниме - {self.anime.title}'
+
+    class Meta:
+        verbose_name = 'Кадр из аниме'
+        verbose_name_plural = 'Кадры из аниме'

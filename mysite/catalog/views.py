@@ -1,5 +1,5 @@
 from django.views.generic import ListView, DetailView
-from .models import Anime
+from .models import Anime, AnimeShots
 
 
 class IndexView(ListView):
@@ -44,5 +44,7 @@ class AnimeDetailView(DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Аниме'
+        current_anime = self.get_object()
+        context['anime_shorts'] = AnimeShots.objects.filter(anime_id=current_anime.pk)
 
         return context

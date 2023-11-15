@@ -85,12 +85,10 @@
             <p class="main-block-anime-detail-bottom-desc">{{ anime.description_full }}</p>
             <h2 class="main-block-anime-detail-bottom-h2">Кадры</h2>
             <div class="main-block-anime-detail-bottom-block-img">
-                <img class="main-block-anime-detail-bottom-block-img-screen" src="img/screenshots-anime/1.jpg"
+                {% for short in anime_shorts %}
+                <img class="main-block-anime-detail-bottom-block-img-screen" src="{{ short.image.url }}"
                     alt="Logo">
-                <img class="main-block-anime-detail-bottom-block-img-screen" src="img/screenshots-anime/1.jpg"
-                    alt="Logo">
-                <img class="main-block-anime-detail-bottom-block-img-screen" src="img/screenshots-anime/1.jpg"
-                    alt="Logo">
+                {% endfor %}
             </div>
         </div>
         <div class="main-block-anime-detail-bottom">
