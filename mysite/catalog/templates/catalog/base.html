@@ -12,13 +12,14 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    {% block bootstrap %}{% endblock bootstrap %}
 </head>
 
 <body>
     <header class="header">
         <div class="wrapper">
             <a class="header-logo" href="{% url 'index' %}">AnimeOne</a>
-            <ol class="header-menu-index">
+            {% block menu %}{% endblock menu %}
                 <li><a href="{% url 'anime_list' %}" class="header-menu-item">Аниме</a></li>
                 <li><a href="" class="header-menu-item">Манга</a></li>
                 <li><a href="" class="header-menu-item">Ранобэ</a></li>
@@ -38,6 +39,7 @@
             <a href="{% url 'index' %}" class="footer-title">AnimeOne</a>
         </div>
     </footer>
+    {% block jsc %}{% endblock jsc %}
 </body>
 
 </html>

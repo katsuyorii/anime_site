@@ -1,5 +1,9 @@
 {% extends "catalog/base.html" %}
 
+{% block menu %}
+    <ol class="header-menu-index">
+{% endblock menu %}
+
 {% block content %}
 <div class="wrapper">
     <div class="main-block-new-anime">
@@ -12,7 +16,7 @@
                         <img class="main-block-list-anime-card-img" src="{{anime.poster_image.url}}"
                             alt="Logo">
                         <div class="block-margin">
-                            <a class="main-block-list-anime-card-a" href="#">{{ anime.title }}</a>
+                            <a class="main-block-list-anime-card-a" href="{{ anime.get_absolute_url }}">{{ anime.title }}</a>
                             <p class="main-block-list-anime-card-eng">{{ anime.title_eng }}</p>
                             <div class="main-block-list-anime-card-type-row">
                                 <a class="main-block-list-anime-card-type-row-a" href="#">{{ anime.get_type_display }}</a>

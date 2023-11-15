@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 from transliterate import slugify
 
@@ -43,13 +44,15 @@ class Anime(models.Model):
     episodes = models.PositiveSmallIntegerField(verbose_name='Количество серий в сезоне', null=True, blank=True)
     status = models.CharField(verbose_name='Статус аниме', max_length=3, choices=Status.choices)
     genres = models.ManyToManyField(to=Genre, verbose_name='Жанры аниме', related_name='genres_anime', db_index=True)
-    studia = models.CharField(verbose_name='Студия', max_length=200)
+    studia = models.CharField(verbose_name='Студия', max_length=200, null=True, blank=True)
     age_restrictions = models.CharField(verbose_name='Возрастное ограничение', max_length=4, choices=Age.choices)
     year = models.PositiveIntegerField(verbose_name='Год выпуска аниме')
     create_date = models.DateTimeField(verbose_name='Дата добавления аниме', auto_now_add=True)
     description_full = models.TextField(verbose_name='Полное описание аниме')
     description_partial = models.CharField(verbose_name='Краткое описание аниме', max_length=300)
     poster_image = models.ImageField(verbose_name='Изображение постера аниме', upload_to='posters/')
+    duration = models.CharField(verbose_name='Длительность', max_length=200, null=True, blank=True, help_text='Поле для аниме-фильмов')
+    author = models.CharField(verbose_name='Автор', max_length=200, null=True, blank=True, help_text='Поле для аниме-фильмов')
 
     def __str__(self):
         return self.title
@@ -57,6 +60,9 @@ class Anime(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title, 'ru')
         super().save()
+
+    def get_absolute_url(self):
+        return reverse("anime_detail", kwargs={"anime_slug": self.slug})
 
     class Meta:
         verbose_name = 'Аниме'

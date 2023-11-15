@@ -469,9 +469,9 @@ table {
 }
 
 .main-block-anime-detail-right-main {
-    width: 300px;
     display: flex;
-    justify-content: space-between;
+    justify-content: start;
+    gap: 15px;
 }
 
 .p-item {
