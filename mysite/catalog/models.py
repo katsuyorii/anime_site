@@ -1,7 +1,7 @@
 from django.db import models
 from django.urls import reverse
-from django.utils import timezone
 from transliterate import slugify
+from django.conf import settings
 
 
 class Genre(models.Model):
@@ -43,7 +43,7 @@ class Anime(models.Model):
     type = models.CharField(verbose_name='Тип аниме', max_length=2, choices=Type.choices)
     episodes = models.PositiveSmallIntegerField(verbose_name='Количество серий в сезоне', null=True, blank=True)
     status = models.CharField(verbose_name='Статус аниме', max_length=3, choices=Status.choices)
-    genres = models.ManyToManyField(to=Genre, verbose_name='Жанры аниме', related_name='genres_anime', db_index=True)
+    genres = models.ManyToManyField(to=Genre, verbose_name='Жанры аниме', db_index=True)
     studia = models.CharField(verbose_name='Студия', max_length=200, null=True, blank=True)
     age_restrictions = models.CharField(verbose_name='Возрастное ограничение', max_length=4, choices=Age.choices)
     year = models.PositiveIntegerField(verbose_name='Год выпуска аниме')
@@ -79,3 +79,17 @@ class AnimeShots(models.Model):
     class Meta:
         verbose_name = 'Кадр из аниме'
         verbose_name_plural = 'Кадры из аниме'
+
+
+class Comment(models.Model):
+    anime = models.ForeignKey(verbose_name='Аниме', to=Anime, on_delete=models.CASCADE)
+    author = models.ForeignKey(verbose_name='Автор', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    content = models.TextField(verbose_name='Текст комментария')
+    date_created = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True)
+
+    def __str__(self):
+        return f'{self.author.username} | {self.anime.title}'
+
+    class Meta:
+        verbose_name = 'Комментарий'
+        verbose_name_plural = 'Комментарии'

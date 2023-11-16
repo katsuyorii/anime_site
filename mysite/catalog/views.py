@@ -28,6 +28,11 @@ class AnimeListView(ListView):
     context_object_name = 'anime_list'
     paginate_by = 3
 
+    def get_queryset(self):
+        queryset = Anime.objects.all().prefetch_related('genres')
+
+        return queryset
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = 'Каталог аниме'
@@ -43,8 +48,7 @@ class AnimeDetailView(DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        current_anime = self.get_object()
-        context['title'] = current_anime.title
-        context['anime_shorts'] = AnimeShots.objects.filter(anime_id=current_anime.pk)
+        context['title'] = self.object.title
+        context['anime_shorts'] = AnimeShots.objects.filter(anime_id=self.object.pk)
 
         return context

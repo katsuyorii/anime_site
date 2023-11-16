@@ -32,7 +32,7 @@
                 <div class="main-block-new-anime-row-card">
                     <img class="main-block-new-anime-row-card-img" src="{{anime_last.poster_image.url}}"
                         alt="Logo">
-                    <a class="main-block-new-anime-row-card-a" href="#">{{anime_last.title}}</a>
+                    <a class="main-block-new-anime-row-card-a" href="{{anime_last.get_absolute_url}}">{{anime_last.title}}</a>
                 </div>
                 {% endfor %}
             </div>
@@ -48,7 +48,7 @@
                 <div class="main-block-new-anime-row-card">
                     <img class="main-block-new-anime-row-card-img" src="{{anime_top.poster_image.url}}"
                         alt="Logo">
-                    <a class="main-block-new-anime-row-card-a" href="#">{{anime_top.title}}</a>
+                    <a class="main-block-new-anime-row-card-a" href="{{anime_top.get_absolute_url}}">{{anime_top.title}}</a>
                 </div>
                 {% endfor %}
             </div>
