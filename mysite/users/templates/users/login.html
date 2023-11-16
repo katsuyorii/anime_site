@@ -13,7 +13,14 @@
             <div class="main-block-login">
                 <form method="POST">
                     {% csrf_token %}
-                    {{ form.as_p }}
+                    <div class="mb-3">
+                        <label for="{{ form.username.id_for_label }}" class="form-label">Логин</label>
+                        {{ form.username }}
+                    </div>
+                    <div class="mb-3">
+                        <label for="{{ form.password.id_for_label }}" class="form-label">Пароль</label>
+                        {{ form.password }}
+                    </div>
                     <button type="submit" class="btn btn-success">Вход</button>
                 </form>
                 <p class="main-block-login-reg">Нет аккаунта? <a class="main-block-login-a"
