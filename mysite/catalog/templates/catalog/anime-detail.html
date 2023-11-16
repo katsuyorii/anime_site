@@ -96,56 +96,27 @@
             <form method="POST">
                 {% csrf_token %}
                 <div class="form-outline">
-                    <textarea class="form-control" id="content" rows="4"
-                        placeholder="Текст комментария..."></textarea>
+                    {{ form.content }}
                 </div>
                 <br>
                 <button type="submit" class="btn btn-success">Отправить</button>
             </form>
             <br>
+            {% for comm in comments %}
             <div class="main-block-anime-detail-bottom-comment">
                 <div class="img_obertka">
-                    <img class="main-block-anime-detail-bottom-comment-img" src="img/profile-img/1.jpg"
+                    <img class="main-block-anime-detail-bottom-comment-img" src="{{ comm.author.image.url }}"
                         alt="Logo">
                 </div>
                 <div class="main-block-anime-detail-bottom-comment-content">
                     <div class="main-block-anime-detail-bottom-comment-content-namedata">
-                        <a class="main-block-anime-detail-bottom-comment-content-name" href="#">Alien</a>
-                        <p class="main-block-anime-detail-bottom-comment-content-data">23 августа 2023 г.</p>
+                        <a class="main-block-anime-detail-bottom-comment-content-name" href="#">{{ comm.author.username }}</a>
+                        <p class="main-block-anime-detail-bottom-comment-content-data">{{ comm.date_created }}</p>
                     </div>
-                    <p class="main-block-anime-detail-bottom-comment-content-text">Не смотри аниме, пожалуйста.
-                        Прое смотри аниме, пожалуйста.
-                        Прое смотри аниме, пожалуйста.
-                        Прое смотри аниме, пожалуйста.
-                        Прое смотри аниме, пожалуйста.
-                        Прое смотри аниме, пожалуйста.
-                        Прое смотри аниме, пожалуйста.
-                        Прое смотри аниме, пожалуйста.
-                        Про </p>
+                    <p class="main-block-anime-detail-bottom-comment-content-text">{{ comm.content }}</p>
                 </div>
             </div>
-
-            <div class="main-block-anime-detail-bottom-comment">
-                <div class="img_obertka">
-                    <img class="main-block-anime-detail-bottom-comment-img" src="img/profile-img/1.jpg"
-                        alt="Logo">
-                </div>
-                <div class="main-block-anime-detail-bottom-comment-content">
-                    <div class="main-block-anime-detail-bottom-comment-content-namedata">
-                        <a class="main-block-anime-detail-bottom-comment-content-name" href="#">Alien</a>
-                        <p class="main-block-anime-detail-bottom-comment-content-data">23 августа 2023 г.</p>
-                    </div>
-                    <p class="main-block-anime-detail-bottom-comment-content-text">Не смотри аниме, пожалуйста.
-                        Прое смотри аниме, пожалуйста.
-                        Прое смотри аниме, пожалуйста.
-                        Прое смотри аниме, пожалуйста.
-                        Прое смотри аниме, пожалуйста.
-                        Прое смотри аниме, пожалуйста.
-                        Прое смотри аниме, пожалуйста.
-                        Прое смотри аниме, пожалуйста.
-                        Про </p>
-                </div>
-            </div>
+            {% endfor %}
         </div>
     </div>
 </div>

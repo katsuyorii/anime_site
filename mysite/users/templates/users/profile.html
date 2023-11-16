@@ -16,7 +16,7 @@
             <h1 class="block-title-h">Профиль</h1>
             <div class="main-block-inner-two">
                 <div class="main-block-login">
-                    <form method="POST">
+                    <form enctype="multipart/form-data" method="POST">
                         {% csrf_token %}
                         <img class="main-block-login-img" src="{{ user.image.url }}" alt="Logo">
                         <div class="row">

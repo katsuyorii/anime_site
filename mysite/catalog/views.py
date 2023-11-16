@@ -1,5 +1,8 @@
 from django.views.generic import ListView, DetailView
-from .models import Anime, AnimeShots
+from .models import Anime, AnimeShots, Comment
+from django.views.generic.edit import FormMixin
+from .forms import AddCommentForm
+from django.urls import reverse_lazy
 
 
 class IndexView(ListView):
@@ -40,16 +43,33 @@ class AnimeListView(ListView):
         return context
 
 
-class AnimeDetailView(DetailView):
+class AnimeDetailView(FormMixin, DetailView):
     model = Anime
     template_name = 'catalog/anime-detail.html'
     context_object_name = 'anime'
     slug_url_kwarg = 'anime_slug'
+    form_class = AddCommentForm
+
+    def get_success_url(self):
+        return reverse_lazy('index')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['title'] = self.object.title
         context['anime_shorts'] = AnimeShots.objects.filter(anime_id=self.object.pk)
+        context['comments'] = Comment.objects.filter(anime_id=self.object.pk).select_related('author', 'anime')
+        context['form'] = self.get_form()
 
         return context
 
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            comm = form.save(commit=False)
+            current_anime = self.get_object()
+            comm.anime_id = current_anime.pk
+            comm.author_id = request.user.pk
+            comm.save()
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
