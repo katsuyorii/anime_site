@@ -27,7 +27,11 @@
             </ol>
             <div class="header-icons">
                 <a href="#"><img class="header-icons-icon" src="{% static 'img/icons/search.svg' %}" alt="Search"></a>
-                <a href="{% url 'login' %}"><img class="header-icons-icon" src="{% static 'img/icons/profile.png' %}" alt="Profile"></a>
+                {% if user.is_authenticated %}
+                    <a href="{% url 'profile' %}"><img class="header-icons-icon" src="{% static 'img/icons/profile.png' %}" alt="Profile"></a>
+                {% else %}
+                    <a href="{% url 'login' %}"><img class="header-icons-icon" src="{% static 'img/icons/profile.png' %}" alt="Profile"></a>
+                {% endif %}
             </div>
         </div>
     </header>

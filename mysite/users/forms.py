@@ -45,3 +45,40 @@ class UserRegistrationForm(UserCreationForm):
             'password1',
             'password2',
         ]
+
+
+class ProfileUserForm(forms.ModelForm):
+    first_name = forms.CharField(widget=forms.TextInput(attrs={
+        'class': "form-control",
+        'placeholder': "Имя",
+    }))
+
+    username = forms.CharField(widget=forms.TextInput(attrs={
+        'class': "form-control",
+        'placeholder': "Логин",
+        'readonly': True,
+    }))
+
+    last_name = forms.CharField(widget=forms.TextInput(attrs={
+        'class': "form-control",
+        'placeholder': "Фамилия",
+    }))
+
+    email = forms.CharField(widget=forms.EmailInput(attrs={
+        'class': "form-control",
+        'placeholder': "E-mail",
+    }))
+
+    image = forms.ImageField(widget=forms.FileInput(attrs={
+        'class': "form-control",
+    }))
+
+    class Meta:
+        model = User
+        fields = [
+            'username',
+            'first_name',
+            'last_name',
+            'email',
+            'image',
+        ]
