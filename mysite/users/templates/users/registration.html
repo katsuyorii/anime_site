@@ -5,6 +5,10 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 {% endblock bootstrap %}
 
+{% block menu %}
+<ol class="header-menu">
+{% endblock menu %}
+
 {% block content %}
 <div class="wrapper">
     <div class="main-block-new-anime">
@@ -28,7 +32,7 @@
                     <button type="submit" class="btn btn-success">Регистрация</button>
                 </form>
                 <p class="main-block-login-reg">Есть аккаунт? <a class="main-block-login-a"
-                        href="#">Авторизация</a>
+                        href="{% url 'login' %}">Авторизация</a>
                 </p>
             </div>
         </div>

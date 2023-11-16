@@ -48,7 +48,7 @@ class UserRegistrationForm(UserCreationForm):
 
 
 class ProfileUserForm(forms.ModelForm):
-    first_name = forms.CharField(widget=forms.TextInput(attrs={
+    first_name = forms.CharField(required=False, widget=forms.TextInput(attrs={
         'class': "form-control",
         'placeholder': "Имя",
     }))
@@ -59,17 +59,17 @@ class ProfileUserForm(forms.ModelForm):
         'readonly': True,
     }))
 
-    last_name = forms.CharField(widget=forms.TextInput(attrs={
+    last_name = forms.CharField(required=False, widget=forms.TextInput(attrs={
         'class': "form-control",
         'placeholder': "Фамилия",
     }))
 
-    email = forms.CharField(widget=forms.EmailInput(attrs={
+    email = forms.CharField(required=False, widget=forms.EmailInput(attrs={
         'class': "form-control",
         'placeholder': "E-mail",
     }))
 
-    image = forms.ImageField(widget=forms.FileInput(attrs={
+    image = forms.ImageField(required=False, widget=forms.FileInput(attrs={
         'class': "form-control",
     }))
 

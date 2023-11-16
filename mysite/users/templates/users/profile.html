@@ -5,6 +5,10 @@
         integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
 {% endblock bootstrap %}
 
+{% block menu %}
+<ol class="header-menu">
+{% endblock menu %}
+
 {% block content %}
 <div class="wrapper">
     <div class="main-block-new-anime">
@@ -14,7 +18,7 @@
                 <div class="main-block-login">
                     <form method="POST">
                         {% csrf_token %}
-                        <img class="main-block-login-img" src="img/small-posters/dr-stone.jpg" alt="Logo">
+                        <img class="main-block-login-img" src="{{ user.image.url }}" alt="Logo">
                         <div class="row">
                             <div class="col">
                                 <label for="{{ form.first_name.id_for_label }}" class="form-label">Имя</label>
@@ -48,7 +52,7 @@
                 </div>
                 <div class="main-block-column">
                     <ol class="main-block-menu-profile">
-                        <li class="main-block-menu-profile-li"><a href="#"
+                        <li class="main-block-menu-profile-li"><a href="{% url 'profile' %}"
                                 class="main-block-menu-profile-a">Профиль</a></li>
                         <li class="main-block-menu-profile-li"><a href="#" class="main-block-menu-profile-a">Мои
                                 аниме</a></li>
@@ -56,7 +60,7 @@
                                 манга</a></li>
                         <li class="main-block-menu-profile-li"><a href="#" class="main-block-menu-profile-a">Мои
                                 ранобэ</a></li>
-                        <li class="main-block-menu-profile-li"><a href="#"
+                        <li class="main-block-menu-profile-li"><a href="{% url 'logout' %}"
                                 class="main-block-menu-profile-a">Выход</a></li>
 
                     </ol>

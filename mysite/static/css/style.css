@@ -343,8 +343,8 @@ table {
 }
 
 .main-block-login-img {
-    width: 150px;
-    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
     display: block;
     margin: 0 auto;
     padding-bottom: 30px;

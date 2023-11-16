@@ -1,10 +1,10 @@
-from typing import Any
-from django.db import models
+from django.shortcuts import redirect
 from django.views.generic import CreateView, UpdateView
 from django.contrib.auth.views import LoginView
 from .forms import UserLoginForm, UserRegistrationForm, ProfileUserForm
 from django.urls import reverse_lazy
 from .models import User
+from django.contrib.auth import logout
 
 
 class LoginUserView(LoginView):
@@ -20,7 +20,7 @@ class RegistrationUserView(CreateView):
     template_name = 'users/registration.html'
 
     def get_success_url(self):
-        return reverse_lazy('index')
+        return reverse_lazy('profile')
 
 
 class ProfileUserView(UpdateView):
@@ -31,5 +31,11 @@ class ProfileUserView(UpdateView):
     def get_success_url(self):
         return reverse_lazy('index')
 
+    # Переопределяем метод, чтобы не вызывать доп. запрос в БД, а также чтобы не искать по slug или pk.
     def get_object(self):
         return self.request.user
+
+
+def logout_user(request):
+    logout(request)
+    return redirect('index')
