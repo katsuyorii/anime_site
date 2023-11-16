@@ -94,8 +94,9 @@
         <div class="main-block-anime-detail-bottom">
             <h2 class="main-block-anime-detail-bottom-h2">Комментарии</h2>
             <form method="POST">
+                {% csrf_token %}
                 <div class="form-outline">
-                    <textarea class="form-control" id="textAreaExample1" rows="4"
+                    <textarea class="form-control" id="content" rows="4"
                         placeholder="Текст комментария..."></textarea>
                 </div>
                 <br>

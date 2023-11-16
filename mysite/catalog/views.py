@@ -52,3 +52,4 @@ class AnimeDetailView(DetailView):
         context['anime_shorts'] = AnimeShots.objects.filter(anime_id=self.object.pk)
 
         return context
+
