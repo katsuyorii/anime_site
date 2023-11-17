@@ -1,4 +1,4 @@
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, DeleteView
 from .models import Anime, AnimeShots, Comment
 from django.views.generic.edit import FormMixin
 from .forms import AddCommentForm
@@ -57,7 +57,7 @@ class AnimeDetailView(FormMixin, DetailView):
         context = super().get_context_data(**kwargs)
         context['title'] = self.object.title
         context['anime_shorts'] = AnimeShots.objects.filter(anime_id=self.object.pk)
-        context['comments'] = Comment.objects.filter(anime_id=self.object.pk).select_related('author', 'anime')
+        context['comments'] = Comment.objects.filter(anime_id=self.object.pk).order_by('-date_created').select_related('author', 'anime')
         context['form'] = self.get_form()
 
         return context
@@ -73,3 +73,13 @@ class AnimeDetailView(FormMixin, DetailView):
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
+
+
+class CommentDeleteView(DeleteView):
+    model = Comment
+    slug_url_kwarg = 'comm_slug'
+    template_name = 'catalog/delete-confirm.html'
+    context_object_name = 'comment'
+
+    def get_success_url(self):
+        return reverse_lazy('index')

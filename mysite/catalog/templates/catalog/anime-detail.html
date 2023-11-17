@@ -93,6 +93,7 @@
         </div>
         <div class="main-block-anime-detail-bottom">
             <h2 class="main-block-anime-detail-bottom-h2">Комментарии</h2>
+            {% if user.is_authenticated %}
             <form method="POST">
                 {% csrf_token %}
                 <div class="form-outline">
@@ -101,6 +102,7 @@
                 <br>
                 <button type="submit" class="btn btn-success">Отправить</button>
             </form>
+            {% endif %}
             <br>
             {% for comm in comments %}
             <div class="main-block-anime-detail-bottom-comment">
@@ -112,6 +114,9 @@
                     <div class="main-block-anime-detail-bottom-comment-content-namedata">
                         <a class="main-block-anime-detail-bottom-comment-content-name" href="#">{{ comm.author.username }}</a>
                         <p class="main-block-anime-detail-bottom-comment-content-data">{{ comm.date_created }}</p>
+                        {% if comm.author.pk == request.user.pk %}
+                        <a class="main-block-anime-detail-bottom-comment-content-delete" href="{{ comm.get_absolute_url }}">Удалить</a>
+                        {% endif %}
                     </div>
                     <p class="main-block-anime-detail-bottom-comment-content-text">{{ comm.content }}</p>
                 </div>

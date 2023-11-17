@@ -86,9 +86,17 @@ class Comment(models.Model):
     author = models.ForeignKey(verbose_name='Автор', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     content = models.TextField(verbose_name='Текст комментария')
     date_created = models.DateTimeField(verbose_name='Дата создания', auto_now_add=True)
+    slug = models.SlugField(verbose_name='Слаг', max_length=200, db_index=True, unique=True, null=True, blank=True)
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.content + str(self.author.pk), 'ru')
+        super().save()
 
     def __str__(self):
         return f'{self.author.username} | {self.anime.title}'
+
+    def get_absolute_url(self):
+        return reverse("comm_delete", kwargs={"comm_slug": self.slug})
 
     class Meta:
         verbose_name = 'Комментарий'

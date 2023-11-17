@@ -546,6 +546,19 @@ table {
     font-size: 17px;
 }
 
+.main-block-anime-detail-bottom-comment-content-delete {
+    text-decoration: none;
+    font-family: 'Ubuntu', sans-serif;
+    color: red;
+    font-size: 12px;
+    padding-top: 5px;
+}
+
+.main-block-anime-detail-bottom-comment-content-delete:hover {
+    color: orangered;
+    transition: 0.3s linear;
+}
+
 .main-block-anime-detail-bottom-comment-content-name:hover {
     color: orangered;
     transition: 0.3s linear;
@@ -603,4 +616,17 @@ table {
     background-color: #e9ebee;
     color: black;
     border: 1px solid #ddd;
+}
+
+.main-block-delete-comm-buttons-row {
+    display: flex;
+    gap: 25px;
+}
+
+.main-block-delete-comm-buttons-row-back {
+    padding: 9px 40px;
+    text-decoration: none;
+    background-color: red;
+    border-radius: 10px;
+    color: white;
 }
