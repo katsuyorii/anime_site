@@ -19,7 +19,7 @@
                             {% csrf_token %}
                             <div class="main-block-delete-comm-buttons-row">
                                 <button type="submit" class="btn btn-success">Подтверждаю</button>
-                                <a class="main-block-delete-comm-buttons-row-back" href="{{ anime.get_absolute_url }}">Отмена</a>
+                                <a class="main-block-delete-comm-buttons-row-back" href="{% url 'my_anime_list' %}">Отмена</a>
                             </div>
                         </form>
                     </div>

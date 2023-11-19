@@ -50,7 +50,7 @@ class UserAnimeList(ListView):
     context_object_name = 'user_anime_list'
 
     def get_queryset(self):
-        queryset = UserAnimeWatchPlanned.objects.filter(user_id=self.request.user.pk)
+        queryset = UserAnimeWatchPlanned.objects.filter(user_id=self.request.user.pk).select_related('anime')
 
         return queryset
 
