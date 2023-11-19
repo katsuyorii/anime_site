@@ -1,0 +1,50 @@
+{% extends "catalog/base.html" %}
+{% load static %}
+
+{% block bootstrap %}
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
+{% endblock bootstrap %}
+
+{% block menu %}
+<ol class="header-menu">
+{% endblock menu %}
+
+{% block content %}
+<div class="wrapper">
+    <div class="main-block-new-anime">
+        <div class="main-block-inner">
+            <h1 class="block-title-h">Список аниме пользователя - {{ request.user.username }}</h1>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Аниме</th>
+                        <th>Статус</th>
+                        <th>Действие</th>
+                    </tr>
+                </thead>
+                {% for anime in user_anime_list %}
+                    <tbody>
+                        <tr>
+                            <td><a class="table-anime" href="{{anime.anime.get_absolute_url}}">{{ anime.anime.title }}</a></td>
+                            {% if anime.get_status_display == 'Просмотрено'%}
+                                <td><span class="table-status-green">{{anime.get_status_display}}</span></td>
+                            {% else %}
+                                <td><span class="table-status-black">{{anime.get_status_display}}</span></td>
+                            {% endif %}
+                            <td><a class="table-move" href="{% url 'my_anime_list_delete' pk=anime.pk %}">Удалить</a></td>
+                        </tr>
+                    </tbody>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block jsc %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm"
+        crossorigin="anonymous"></script>
+{% endblock jsc %}   
+    
+

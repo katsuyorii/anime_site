@@ -1,9 +1,12 @@
-from django.shortcuts import redirect
-from django.views.generic import CreateView, UpdateView
+from typing import Any
+from django.db import models
+from django.db.models.query import QuerySet
+from django.shortcuts import get_object_or_404, redirect
+from django.views.generic import CreateView, UpdateView, ListView ,DeleteView
 from django.contrib.auth.views import LoginView
 from .forms import UserLoginForm, UserRegistrationForm, ProfileUserForm
 from django.urls import reverse_lazy
-from .models import User
+from .models import User, UserAnimeWatchPlanned
 from django.contrib.auth import logout
 
 
@@ -39,3 +42,36 @@ class ProfileUserView(UpdateView):
 def logout_user(request):
     logout(request)
     return redirect('index')
+
+
+class UserAnimeList(ListView):
+    model = UserAnimeWatchPlanned
+    template_name = 'users/my_anime.html'
+    context_object_name = 'user_anime_list'
+
+    def get_queryset(self):
+        queryset = UserAnimeWatchPlanned.objects.filter(user_id=self.request.user.pk)
+
+        return queryset
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = f'Список аниме пользователя {self.request.user.username}'
+
+        return context
+
+
+class UserAnimeListDelete(DeleteView):
+    model = UserAnimeWatchPlanned
+    template_name = 'users/delete-confirm.html'
+    pk_url_kwarg = 'pk'
+    context_object_name = 'anime'
+
+    def get_success_url(self):
+        return reverse_lazy('index')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Удаление аниме из списка'
+
+        return context

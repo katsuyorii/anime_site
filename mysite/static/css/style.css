@@ -630,3 +630,59 @@ table {
     border-radius: 10px;
     color: white;
 }
+
+.table {
+    width: 100%;
+    margin-bottom: 20px;
+    border: 1px solid #dddddd;
+    border-collapse: collapse;
+}
+
+.table th {
+    font-weight: bold;
+    padding: 5px;
+    background: #efefef;
+    border: 1px solid #dddddd;
+    width: 230px;
+}
+
+.table td {
+    border: 1px solid #dddddd;
+    padding: 5px;
+}
+
+.table-anime {
+    text-decoration: none;
+    font-family: 'Ubuntu', sans-serif;
+    color: Chocolate;
+    font-size: 17px;
+}
+
+.table-anime:hover {
+    color: orangered;
+    transition: 0.3s linear;
+}
+
+.table-status-green {
+    font-family: 'Ubuntu', sans-serif;
+    color: green;
+    font-size: 17px;
+}
+
+.table-status-black {
+    font-family: 'Ubuntu', sans-serif;
+    color: black;
+    font-size: 17px;
+}
+
+.table-move {
+    text-decoration: none;
+    font-family: 'Ubuntu', sans-serif;
+    color: red;
+    font-size: 17px;
+}
+
+.table-move:hover {
+    color: darkred;
+    transition: 0.3s linear;
+}
