@@ -1,5 +1,6 @@
 from django import forms
 from .models import Comment
+from users.models import UserAnimeWatchPlanned
 
 
 class AddCommentForm(forms.ModelForm):
@@ -13,4 +14,14 @@ class AddCommentForm(forms.ModelForm):
         model = Comment
         fields = [
             'content',
+        ]
+
+
+class AddAnimeToList(forms.ModelForm):
+    status = forms.ChoiceField(choices=UserAnimeWatchPlanned.Status.choices, widget=forms.Select)
+
+    class Meta:
+        model = UserAnimeWatchPlanned
+        fields = [
+            'status',
         ]

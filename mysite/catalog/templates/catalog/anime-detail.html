@@ -16,13 +16,11 @@
             <div class="main-block-anime-detail-left">
                 <img class="main-block-anime-detail-left-img" src="{{ anime.poster_image.url }}" alt="Logo">
                 <form method="POST">
-                    <span class="custom-dropdown big">
-                        <select>
-                            <option>Не просмотрено</option>
-                            <option>Просмотрено</option>
-                            <option>Запланировано</option>
-                        </select>
-                    </span>
+                    {% csrf_token %}
+                    <div class="custom-dropdown big">
+                        {{form_2.status}}
+                    </div>
+                    <button type="submit" class="btn btn-success" name="form2_sub">Подтвердить</button>
                 </form>
                 <div class="rating-area">
                     <input type="radio" id="star-5" name="rating" value="5">
@@ -100,7 +98,7 @@
                     {{ form.content }}
                 </div>
                 <br>
-                <button type="submit" class="btn btn-success">Отправить</button>
+                <button type="submit" class="btn btn-success" name="form1_sub">Отправить</button>
             </form>
             {% endif %}
             <br>

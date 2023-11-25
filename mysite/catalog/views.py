@@ -1,7 +1,7 @@
 from django.views.generic import ListView, DetailView, DeleteView
 from .models import Anime, AnimeShots, Comment
 from django.views.generic.edit import FormMixin
-from .forms import AddCommentForm
+from .forms import AddCommentForm, AddAnimeToList
 from django.urls import reverse_lazy
 
 
@@ -49,6 +49,7 @@ class AnimeDetailView(FormMixin, DetailView):
     context_object_name = 'anime'
     slug_url_kwarg = 'anime_slug'
     form_class = AddCommentForm
+    second_form_class = AddAnimeToList
 
     def get_success_url(self):
         return reverse_lazy('index')
@@ -59,20 +60,33 @@ class AnimeDetailView(FormMixin, DetailView):
         context['anime_shorts'] = AnimeShots.objects.filter(anime_id=self.object.pk)
         context['comments'] = Comment.objects.filter(anime_id=self.object.pk).order_by('-date_created').select_related('author', 'anime')
         context['form'] = self.get_form()
+        context['form_2'] = self.second_form_class()
 
         return context
 
     def post(self, request, *args, **kwargs):
         form = self.get_form()
-        if form.is_valid():
-            comm = form.save(commit=False)
-            current_anime = self.get_object()
-            comm.anime_id = current_anime.pk
-            comm.author_id = request.user.pk
-            comm.save()
-            return self.form_valid(form)
-        else:
-            return self.form_invalid(form)
+        form_2 = self.second_form_class(request.POST)
+        if 'form1_sub' in request.POST:
+            if form.is_valid():
+                comm = form.save(commit=False)
+                current_anime = self.get_object()
+                comm.anime_id = current_anime.pk
+                comm.author_id = request.user.pk
+                comm.save()
+                return self.form_valid(form)
+            else:
+                return self.form_invalid(form)
+        elif 'form2_sub' in request.POST:
+            if form_2.is_valid():
+                obj = form_2.save(commit=False)
+                current_anime = self.get_object()
+                obj.anime_id = current_anime.pk
+                obj.user_id = request.user.pk
+                obj.save()
+                return self.form_valid(form_2)
+            else:
+                return self.form_invalid(form_2)
 
 
 class CommentDeleteView(DeleteView):
