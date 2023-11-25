@@ -3,6 +3,7 @@ from .models import Anime, AnimeShots, Comment
 from django.views.generic.edit import FormMixin
 from .forms import AddCommentForm, AddAnimeToList
 from django.urls import reverse_lazy
+from users.models import UserAnimeWatchPlanned
 
 
 class IndexView(ListView):
@@ -79,12 +80,18 @@ class AnimeDetailView(FormMixin, DetailView):
                 return self.form_invalid(form)
         elif 'form2_sub' in request.POST:
             if form_2.is_valid():
-                obj = form_2.save(commit=False)
                 current_anime = self.get_object()
-                obj.anime_id = current_anime.pk
-                obj.user_id = request.user.pk
-                obj.save()
-                return self.form_valid(form_2)
+                a = UserAnimeWatchPlanned.objects.filter(anime_id=current_anime.pk, user_id=request.user.pk).first()
+                if a:
+                    a.status = form_2.cleaned_data['status']
+                    a.save()
+                    return self.form_valid(form_2)
+                else:
+                    obj = form_2.save(commit=False)
+                    obj.anime_id = current_anime.pk
+                    obj.user_id = request.user.pk
+                    obj.save()
+                    return self.form_valid(form_2)
             else:
                 return self.form_invalid(form_2)
 
