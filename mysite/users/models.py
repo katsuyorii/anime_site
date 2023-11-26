@@ -9,6 +9,7 @@ class User(AbstractUser):
 
 class UserAnimeWatchPlanned(models.Model):
     class Status(models.TextChoices):
+        EM = '', '-------'
         WA = 'wa', 'Просмотрено'
         ZP = 'zp', 'Запланировано'
 

@@ -68,10 +68,11 @@ class AnimeDetailView(FormMixin, DetailView):
     def post(self, request, *args, **kwargs):
         form = self.get_form()
         form_2 = self.second_form_class(request.POST)
+        current_anime = self.get_object()
+
         if 'form1_sub' in request.POST:
             if form.is_valid():
                 comm = form.save(commit=False)
-                current_anime = self.get_object()
                 comm.anime_id = current_anime.pk
                 comm.author_id = request.user.pk
                 comm.save()
@@ -80,11 +81,11 @@ class AnimeDetailView(FormMixin, DetailView):
                 return self.form_invalid(form)
         elif 'form2_sub' in request.POST:
             if form_2.is_valid():
-                current_anime = self.get_object()
-                a = UserAnimeWatchPlanned.objects.filter(anime_id=current_anime.pk, user_id=request.user.pk).first()
-                if a:
-                    a.status = form_2.cleaned_data['status']
-                    a.save()
+                obj = UserAnimeWatchPlanned.objects.filter(anime_id=current_anime.pk, user_id=request.user.pk).first()
+                if obj:
+                    print(form_2.cleaned_data)
+                    obj.status = form_2.cleaned_data['status']
+                    obj.save()
                     return self.form_valid(form_2)
                 else:
                     obj = form_2.save(commit=False)
